@@ -2,8 +2,7 @@ var app = new Vue({
     el: '#app',
     data: {
         product: 'Socks',
-        description: 'A pair of warm fuzzy socks',
-        image: './assets/green-socks.png'
-
+        image: './assets/green-socks.png',
+        inStock: true,
     }
 })
