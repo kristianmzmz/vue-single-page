@@ -1,27 +1,64 @@
-var app = new Vue({
-    el: '#app',
-    data: {
-        brand: 'Codurance',
-        product: 'Socks',
-        selectedVariant: 0,
-        details: ["80% cotton", "20% polyester", "Gender-neutral"],
-        variants: [
-            {
-                variantId: 2232,
-                variantColor: "green",
-                image: './assets/green-socks.png',
-                quantity: 10,
-                onSale: false
-            },
-            {
-                variantId: 2235,
-                variantColor: "blue",
-                image: './assets/blue-socks.png',
-                quantity: 0,
-                onSale: true
-            },
-        ],
-        cart: 0
+Vue.component('product', {
+    template: `
+    <div>
+    <div class="product-image">
+      <img v-bind:src="image" />
+    </div>
+
+    <div class="product-info">
+      <h1>{{ title }}</h1>
+      <p v-if="inStock">In stock</p>
+      <p 
+        v-else 
+        :class="{ lineThrough: !inStock }">Out of Stock</p>
+      
+      <button 
+          @click="addToCart" 
+          :disabled="!inStock"
+          :class="{ disabledButton: !inStock }">Add to cart </button>
+      <button @click="cart > 0 ? cart--  : 0">Remove from cart</button>
+
+      <ul>
+        <li v-for="detail in details">{{ detail }}</li>
+      </ul>
+      <div v-for="(variant, index) in variants" 
+          class="color-box"
+          :key="variant.variantId" 
+          :style="{ 'backgroundColor': variant.variantColor }"
+          @mouseover="updateProduct(index)">
+      </div>
+
+      <div class="cart">
+        <p>Cart {{ cart }}</p>
+      </div>
+    </div>
+
+  </div>
+    `,
+    data() {
+        return {
+            brand: 'Codurance',
+            product: 'Socks',
+            selectedVariant: 0,
+            details: ["80% cotton", "20% polyester", "Gender-neutral"],
+            variants: [
+                {
+                    variantId: 2232,
+                    variantColor: "green",
+                    image: './assets/green-socks.png',
+                    quantity: 10,
+                    onSale: false
+                },
+                {
+                    variantId: 2235,
+                    variantColor: "blue",
+                    image: './assets/blue-socks.png',
+                    quantity: 0,
+                    onSale: true
+                },
+            ],
+            cart: 0
+        }
     },
     methods: {
         addToCart() {
@@ -33,7 +70,7 @@ var app = new Vue({
     },
     computed: {
         title() {
-            return this.brand + " " +  this.product + this.onSale
+            return this.brand + " " + this.product + this.onSale
         },
         image() {
             return this.variants[this.selectedVariant].image
@@ -45,4 +82,8 @@ var app = new Vue({
             return this.variants[this.selectedVariant].onSale ? ' on sale' : '';
         }
     }
+});
+
+var app = new Vue({
+    el: '#app',
 })
