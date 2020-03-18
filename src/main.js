@@ -11,12 +11,14 @@ var app = new Vue({
                 variantColor: "green",
                 image: './assets/green-socks.png',
                 quantity: 10,
+                onSale: false
             },
             {
                 variantId: 2235,
                 variantColor: "blue",
                 image: './assets/blue-socks.png',
-                quantity: 0
+                quantity: 0,
+                onSale: true
             },
         ],
         cart: 0
@@ -31,13 +33,16 @@ var app = new Vue({
     },
     computed: {
         title() {
-            return this.brand + " " +  this.product
+            return this.brand + " " +  this.product + this.onSale
         },
         image() {
             return this.variants[this.selectedVariant].image
         },
         inStock() {
             return this.variants[this.selectedVariant].quantity > 0
+        },
+        onSale() {
+            return this.variants[this.selectedVariant].onSale ? ' on sale' : '';
         }
     }
 })
