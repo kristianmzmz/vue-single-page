@@ -1,20 +1,22 @@
 var app = new Vue({
     el: '#app',
     data: {
+        brand: 'Codurance',
         product: 'Socks',
-        image: './assets/green-socks.png',
-        inStock: false,
+        selectedVariant: 0,
         details: ["80% cotton", "20% polyester", "Gender-neutral"],
         variants: [
             {
                 variantId: 2232,
                 variantColor: "green",
-                image: './assets/green-socks.png'
+                image: './assets/green-socks.png',
+                quantity: 10,
             },
             {
                 variantId: 2235,
                 variantColor: "blue",
-                image: './assets/blue-socks.png'
+                image: './assets/blue-socks.png',
+                quantity: 0
             },
         ],
         cart: 0
@@ -23,8 +25,19 @@ var app = new Vue({
         addToCart() {
             this.cart += 1;
         },
-        updateProduct(variantImage) {
-            this.image = variantImage
+        updateProduct(index) {
+            this.selectedVariant = index
+        }
+    },
+    computed: {
+        title() {
+            return this.brand + " " +  this.product
+        },
+        image() {
+            return this.variants[this.selectedVariant].image
+        },
+        inStock() {
+            return this.variants[this.selectedVariant].quantity > 0
         }
     }
 })
