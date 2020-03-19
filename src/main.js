@@ -6,36 +6,41 @@ Vue.component('product', {
         }
     },
     template: `
-    <div>
-    <div class="product-image">
-      <img v-bind:src="image" />
-    </div>
+    <div class="product">
+        <div class="product-image">
+          <img :src="image" />
+        </div>
+  
+        <div class="product-info">
+            <h1>{{ product }}</h1>
+            <p v-if="inStock">In Stock</p>
+            <p v-else>Out of Stock</p>
+            <p>Shipping: {{ shipping }}</p>
+  
+            <ul>
+              <li v-for="detail in details">{{ detail }}</li>
+            </ul>
+  
+            <div class="color-box"
+                 v-for="(variant, index) in variants" 
+                 :key="variant.ID"
+                 :style="{ backgroundColor: variant.color }"
+                 @mouseover="updateProduct(index)">
+            </div> 
+  
+            <button v-on:click="addToCart" 
+              :disabled="!inStock"
+              :class="{ disabledButton: !inStock }">
+            Add to cart
+            </button>
 
-    <div class="product-info">
-      <h1>{{ title }}</h1>
-      <p v-if="inStock">In stock</p>
-      <p 
-        v-else 
-        :class="{ lineThrough: !inStock }">Out of Stock</p>
-      <p>Shipping {{ shipping }}</p>
-      <button 
-          @click="addToCart" 
-          :disabled="!inStock"
-          :class="{ disabledButton: !inStock }">Add to cart </button>
-      <button @click="cart > 0 ? cart--  : 0">Remove from cart</button>
-
-      <ul>
-        <li v-for="detail in details">{{ detail }}</li>
-      </ul>
-      <div v-for="(variant, index) in variants" 
-          class="color-box"
-          :key="variant.variantId" 
-          :style="{ 'backgroundColor': variant.variantColor }"
-          @mouseover="updateProduct(index)">
+            <button @click="removeFromCart">
+            Remove from cart
+            </button>
+  
+         </div>  
+      
       </div>
-    </div>
-
-  </div>
     `,
     data() {
         return {
@@ -45,28 +50,29 @@ Vue.component('product', {
             details: ["80% cotton", "20% polyester", "Gender-neutral"],
             variants: [
                 {
-                    variantId: 2232,
-                    variantColor: "green",
-                    image: './assets/green-socks.png',
-                    quantity: 10,
-                    onSale: false
+                    ID: 2234,
+                    color: 'green',
+                    image: './assets/green-socks.jpg',
+                    quantity: 10
                 },
                 {
-                    variantId: 2235,
-                    variantColor: "blue",
-                    image: './assets/blue-socks.png',
-                    quantity: 0,
-                    onSale: true
+                    ID: 2235,
+                    color: 'blue',
+                    image: './assets/blue-socks.jpg',
+                    quantity: 0
                 },
             ]
         }
     },
     methods: {
         addToCart() {
-            this.$emit('add-to-cart')
+            this.$emit('add-to-cart', this.variants[this.selectedVariant].variantId)
         },
-        updateProduct(index) {
+        updateProduct(index) {  
             this.selectedVariant = index
+        },
+        removeFromCart() {
+             this.$emit('remove-from-cart', this.variants[this.selectedVariant].variantId)
         }
     },
     computed: {
