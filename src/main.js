@@ -33,10 +33,6 @@ Vue.component('product', {
           :style="{ 'backgroundColor': variant.variantColor }"
           @mouseover="updateProduct(index)">
       </div>
-
-      <div class="cart">
-        <p>Cart {{ cart }}</p>
-      </div>
     </div>
 
   </div>
@@ -62,13 +58,12 @@ Vue.component('product', {
                     quantity: 0,
                     onSale: true
                 },
-            ],
-            cart: 0
+            ]
         }
     },
     methods: {
         addToCart() {
-            this.cart += 1;
+            this.$emit('add-to-cart')
         },
         updateProduct(index) {
             this.selectedVariant = index
@@ -96,6 +91,12 @@ Vue.component('product', {
 var app = new Vue({
     el: '#app',
     data: {
-        premium: true
+        premium: true,
+        cart: 0
+    },
+    methods: {
+        updateCart() {
+            this.cart += 1;
+        },
     }
 })
