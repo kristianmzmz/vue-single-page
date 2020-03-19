@@ -30,16 +30,16 @@ Vue.component('product', {
   
             <div class="buttons">
                 <button v-on:click="addToCart" 
-                :disabled="!inStock"
-                :class="{ disabledButton: !inStock }">
-                Add to cart
+                    :disabled="!inStock"
+                    :class="{ disabledButton: !inStock }">
+                    Add to cart
                 </button>
 
                 <button @click="removeFromCart">
-                Remove from cart
+                    Remove from cart
                 </button>
             </div>
-  
+            <product-review></product-review>
          </div>  
       
       </div>
@@ -92,6 +92,51 @@ Vue.component('product', {
         },
         shipping() {
             return this.premium ? 'free' : '$2.99';
+        }
+    }
+});
+
+Vue.component('product-review', {
+    template: `
+    <form class="review-form" @submit.prevent="onSubmit">
+        <p>
+            <label for="name">Name:</label>
+            <input id="name" v-model="name">
+        </p>
+        <p>
+            <label for="review">Review:</label>
+            <textarea id="review" v-model="review"></textarea>
+        </p>
+        <p>
+            <label for="rating">Rating:</label>
+            <select id="rating" v-model.number="rating">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            </select>
+        </p>
+        <p>
+            <input type="submit" id="submit">
+        </p>
+    </form>
+    `,
+    data() {
+        return {
+            name: null,
+            review: null,
+            rating: null,
+        }
+    },
+    methods: {
+        onSubmit() {
+            let productReview = {
+                name: this.name,
+                review: this.review,
+                rating: this.rating,
+            }
+            this.name = null;
+            this.review = null;
+            this.rating = null;
         }
     }
 });
