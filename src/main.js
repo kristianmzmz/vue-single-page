@@ -39,9 +39,8 @@ Vue.component('product', {
                     Remove from cart
                 </button>
             </div>
-            <product-review></product-review>
          </div>  
-      
+         <product-review @submited-product-review="updateReviews"></product-review>
       </div>
     `,
     data() {
@@ -63,7 +62,8 @@ Vue.component('product', {
                     image: './assets/blue-socks.jpg',
                     quantity: 1
                 },
-            ]
+            ],
+            reviews: []
         }
     },
     methods: {
@@ -75,6 +75,9 @@ Vue.component('product', {
         },
         removeFromCart() {
             this.$emit('remove-from-cart', this.variants[this.selectedVariant].ID)
+        },
+        updateReviews(productReview) {
+            this.reviews.push(productReview)
         }
     },
     computed: {
@@ -134,6 +137,7 @@ Vue.component('product-review', {
                 review: this.review,
                 rating: this.rating,
             }
+            this.$emit('submited-product-review', productReview);
             this.name = null;
             this.review = null;
             this.rating = null;
