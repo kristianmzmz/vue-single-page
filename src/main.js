@@ -28,15 +28,17 @@ Vue.component('product', {
                  @mouseover="updateProduct(index)">
             </div> 
   
-            <button v-on:click="addToCart" 
-              :disabled="!inStock"
-              :class="{ disabledButton: !inStock }">
-            Add to cart
-            </button>
+            <div class="buttons">
+                <button v-on:click="addToCart" 
+                :disabled="!inStock"
+                :class="{ disabledButton: !inStock }">
+                Add to cart
+                </button>
 
-            <button @click="removeFromCart">
-            Remove from cart
-            </button>
+                <button @click="removeFromCart">
+                Remove from cart
+                </button>
+            </div>
   
          </div>  
       
