@@ -61,20 +61,20 @@ Vue.component('product', {
                     ID: 2235,
                     color: 'blue',
                     image: './assets/blue-socks.jpg',
-                    quantity: 0
+                    quantity: 1
                 },
             ]
         }
     },
     methods: {
         addToCart() {
-            this.$emit('add-to-cart', this.variants[this.selectedVariant].variantId)
+            this.$emit('add-to-cart', this.variants[this.selectedVariant].ID)
         },
-        updateProduct(index) {  
+        updateProduct(index) {
             this.selectedVariant = index
         },
         removeFromCart() {
-             this.$emit('remove-from-cart', this.variants[this.selectedVariant].variantId)
+            this.$emit('remove-from-cart', this.variants[this.selectedVariant].ID)
         }
     },
     computed: {
@@ -100,11 +100,18 @@ var app = new Vue({
     el: '#app',
     data: {
         premium: true,
-        cart: 0
+        cart: []
     },
     methods: {
-        updateCart() {
-            this.cart += 1;
+        updateCart(id) {
+            this.cart.push(id)
         },
+        removeItem(id) {
+            for (var i = this.cart.length - 1; i >= 0; i--) {
+                if (this.cart[i] === id) {
+                    this.cart.splice(i, 1);
+                }
+            }
+        }
     }
 })
