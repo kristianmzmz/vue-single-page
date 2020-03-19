@@ -40,19 +40,8 @@ Vue.component('product', {
                 </button>
             </div>
 
-            <div>
-                <h2>Reviews</h2>
-                <p v-if="!reviews.length">There are no reviews</p>
-                <ul>
-                    <li v-for="review in reviews">
-                        <p>{{ review.name }} ({{ review.rating }})</p>
-                        <p> Review: {{ review.review }}</p>
-                        <p> Recommend: {{ review.recommend }}</p>
-                    </li>
-                </ul>
-            </div>
+            <review-tabs :reviews="reviews"></review-tabs>
 
-            <product-review @submited-product-review="updateReviews"></product-review>
          </div>  
       </div>
     `,
@@ -181,6 +170,48 @@ Vue.component('product-review', {
                 if (!this.review) this.errors.push("Review is required")
                 if (!this.recommend) this.errors.push("Recommend is required")
             }
+        }
+    }
+});
+
+Vue.component('review-tabs', {
+    props: {
+        reviews: {
+            type: Array,
+            required: true
+        }
+    },
+    template: `
+      <div>
+        <span class="tab"
+            :class="{activeTab: selectedTab === index}"
+            v-for="(tab, index) in tabs"
+            :key="index"
+            @click="selectedTab = index">
+            {{ tab }}
+        </span>
+
+        <div v-show="selectedTab === 0">
+            <h2>Reviews</h2>
+                <p v-if="!reviews.length">There are no reviews</p>
+                <ul>
+                    <li v-for="review in reviews">
+                        <p>{{ review.name }} ({{ review.rating }})</p>
+                        <p> Review: {{ review.review }}</p>
+                        <p> Recommend: {{ review.recommend }}</p>
+                    </li>
+                </ul>
+        </div>
+        
+        <product-review
+            v-show="selectedTab === 1"
+            @submited-product-review="updateReviews">
+        </product-review>
+      </div>`,
+    data() {
+        return {
+            tabs: ["Reviews", "Make a review"],
+            selectedTab: 0
         }
     }
 });
