@@ -39,8 +39,20 @@ Vue.component('product', {
                     Remove from cart
                 </button>
             </div>
+            
+            <div>
+                <h2>Reviews</h2>
+                <p v-if="reviews.length == 0">There are no reviews</p>
+                <ul>
+                    <li v-for="review in reviews">
+                        <p>{{ review.name }} ({{ review.rating }})</p>
+                        <p> Review: {{ review.review }}</p>
+                    </li>
+                </ul>
+            </div>
+
+            <product-review @submited-product-review="updateReviews"></product-review>
          </div>  
-         <product-review @submited-product-review="updateReviews"></product-review>
       </div>
     `,
     data() {
