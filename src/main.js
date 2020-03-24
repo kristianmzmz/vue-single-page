@@ -1,3 +1,5 @@
+import Vue from 'vue'
+
 var eventBus = new Vue()
 
 Vue.component('product', {
