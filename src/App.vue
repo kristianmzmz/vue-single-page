@@ -4,11 +4,7 @@
       <p>Cart({{ cart.length }})</p>
     </div>
 
-    <product
-      :premium="premium"
-      @add-to-cart="updateCart"
-      @remove-from-cart="removeItem"
-    />
+    <product :premium="premium" @add-to-cart="updateCart" @remove-from-cart="removeItem" />
   </div>
 </template>
 
@@ -36,3 +32,12 @@ export default {
   }
 };
 </script>
+
+<style>
+.cart {
+  margin-right: 25px;
+  float: right;
+  border: 1px solid #d8d8d8;
+  padding: 5px 20px;
+}
+</style>

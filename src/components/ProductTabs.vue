@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="tabs">
     <span
       v-for="(tab, index) in tabs"
       :key="index"
