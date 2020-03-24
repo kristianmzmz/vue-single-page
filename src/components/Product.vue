@@ -39,9 +39,15 @@
 
 <script>
 import { EventBus } from '../event-bus.js';
+import ProductTabs from './ProductTabs.vue'
+import ReviewTabs from './ReviewTabs.vue'
 
 export default {
     name: 'product',
+    components: {
+        ProductTabs, 
+        ReviewTabs
+    },
     props: {
         premium: {
             type: Boolean,
