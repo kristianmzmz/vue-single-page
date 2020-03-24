@@ -1,22 +1,39 @@
 <template>
-  <form class="review-form" @submit.prevent="onSubmit">
-    <p v-if="errors.length">Please correct the following error(s)</p>
+  <form
+    class="review-form"
+    @submit.prevent="onSubmit"
+  >
+    <p v-if="errors.length">
+      Please correct the following error(s)
+    </p>
     <ul>
-      <li v-for="(error, index) in errors" :key="index">
+      <li
+        v-for="(error, index) in errors"
+        :key="index"
+      >
         <p>{{ error }}</p>
       </li>
     </ul>
     <p>
       <label for="name">Name:</label>
-      <input id="name" v-model="name" />
+      <input
+        id="name"
+        v-model="name"
+      >
     </p>
     <p>
       <label for="review">Review:</label>
-      <textarea id="review" v-model="review" />
+      <textarea
+        id="review"
+        v-model="review"
+      />
     </p>
     <p>
       <label for="rating">Rating:</label>
-      <select id="rating" v-model.number="rating">
+      <select
+        id="rating"
+        v-model.number="rating"
+      >
         <option>5</option>
         <option>4</option>
         <option>3</option>
@@ -27,12 +44,25 @@
     <p>
       Would you recommend this product?
       <label for="recommend-yes">Yes</label>
-      <input id="recommend-yes" v-model="recommend" type="radio" value="yes" />
+      <input
+        id="recommend-yes"
+        v-model="recommend"
+        type="radio"
+        value="yes"
+      >
       <label for="recommend-no">No</label>
-      <input id="recommend-no" v-model="recommend" type="radio" value="no" />
+      <input
+        id="recommend-no"
+        v-model="recommend"
+        type="radio"
+        value="no"
+      >
     </p>
     <p>
-      <input id="submit" type="submit" />
+      <input
+        id="submit"
+        type="submit"
+      >
     </p>
   </form>
 </template>

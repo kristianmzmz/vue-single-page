@@ -1,14 +1,21 @@
 <template>
   <div class="product">
     <div class="product-image">
-      <img :src="image" />
+      <img :src="image">
     </div>
 
     <div class="product-info">
       <h1>{{ product }}</h1>
-      <p v-if="inStock">In Stock</p>
-      <p v-else>Out of Stock</p>
-      <product-tabs :shipping="shipping" :details="details" />
+      <p v-if="inStock">
+        In Stock
+      </p>
+      <p v-else>
+        Out of Stock
+      </p>
+      <product-tabs
+        :shipping="shipping"
+        :details="details"
+      />
 
       <div
         v-for="(variant, index) in variants"
@@ -23,8 +30,12 @@
           :disabled="!inStock"
           :class="{ disabledButton: !inStock }"
           @click="addToCart"
-        >Add to cart</button>
-        <button @click="removeFromCart">Remove from cart</button>
+        >
+          Add to cart
+        </button>
+        <button @click="removeFromCart">
+          Remove from cart
+        </button>
       </div>
 
       <review-tabs :reviews="reviews" />
@@ -131,7 +142,7 @@ img {
 .color-box {
   width: 40px;
   height: 40px;
-  margin-top: 5px;  
+  margin-top: 5px;
   display: inline-block;
   margin-right: 5px;
 }

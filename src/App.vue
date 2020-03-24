@@ -4,7 +4,11 @@
       <p>Cart({{ cart.length }})</p>
     </div>
 
-    <product :premium="premium" @add-to-cart="updateCart" @remove-from-cart="removeItem" />
+    <product
+      :premium="premium"
+      @add-to-cart="updateCart"
+      @remove-from-cart="removeItem"
+    />
   </div>
 </template>
 
