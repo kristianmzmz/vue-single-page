@@ -38,6 +38,8 @@
 </template>
 
 <script>
+import { EventBus } from '../event-bus.js';
+
 export default {
     name: 'product',
     props: {
@@ -98,9 +100,9 @@ export default {
         }
     },
     mounted() {
-        /* eventBus.$on('review-submitted', submittedProductReview => {
+        EventBus.$on('review-submitted', submittedProductReview => {
             this.reviews.push(submittedProductReview)
-        }) */
+        }) 
     }
 }
 </script>
