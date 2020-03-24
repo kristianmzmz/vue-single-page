@@ -1,55 +1,77 @@
 <template>
-    <form class="review-form" @submit.prevent="onSubmit">
-        <p v-if="errors.length">Please correct the following error(s)</p>
-        <ul>
-            <li v-for="(error, index) in errors" :key="index">
-                <p>{{ error }}</p>
-            </li>
-        </ul>
-        <p>
-            <label for="name">Name:</label>
-            <input id="name" v-model="name">
-        </p>
-        <p>
-            <label for="review">Review:</label>
-            <textarea id="review" v-model="review"></textarea>
-        </p>
-        <p>
-            <label for="rating">Rating:</label>
-            <select id="rating" v-model.number="rating">
-                <option>5</option>
-                <option>4</option>
-                <option>3</option>
-                <option>2</option>
-                <option>1</option>
-            </select>
-        </p>
-        <p>
-            Would you recommend this product?
-            <label for="recommend-yes">Yes</label>
-            <input
-                id="recommend-yes"
-                type="radio"
-                v-model="recommend"
-                value="yes">
-            <label for="recommend-no">No</label>
-            <input
-                id="recommend-no"
-                type="radio"
-                v-model="recommend"
-                value="no">
-        </p>
-        <p>
-            <input type="submit" id="submit">
-        </p>
-    </form>
+  <form
+    class="review-form"
+    @submit.prevent="onSubmit"
+  >
+    <p v-if="errors.length">
+      Please correct the following error(s)
+    </p>
+    <ul>
+      <li
+        v-for="(error, index) in errors"
+        :key="index"
+      >
+        <p>{{ error }}</p>
+      </li>
+    </ul>
+    <p>
+      <label for="name">Name:</label>
+      <input
+        id="name"
+        v-model="name"
+      >
+    </p>
+    <p>
+      <label for="review">Review:</label>
+      <textarea
+        id="review"
+        v-model="review"
+      />
+    </p>
+    <p>
+      <label for="rating">Rating:</label>
+      <select
+        id="rating"
+        v-model.number="rating"
+      >
+        <option>5</option>
+        <option>4</option>
+        <option>3</option>
+        <option>2</option>
+        <option>1</option>
+      </select>
+    </p>
+    <p>
+      Would you recommend this product?
+      <label for="recommend-yes">Yes</label>
+      <input
+        id="recommend-yes"
+        v-model="recommend"
+        type="radio"
+        value="yes"
+      >
+      <label for="recommend-no">No</label>
+      <input
+        id="recommend-no"
+        v-model="recommend"
+        type="radio"
+        value="no"
+      >
+    </p>
+    <p>
+      <input
+        id="submit"
+        type="submit"
+      >
+    </p>
+  </form>
 </template>
     
 <script>
 import { EventBus } from '../event-bus.js';
 
 export default {
-    name: 'product-review',
+    name: 'ProductReview',
     data() {
         return {
             name: null,

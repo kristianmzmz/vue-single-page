@@ -4,14 +4,18 @@
       <p>Cart({{ cart.length }})</p>
     </div>
 
-    <product :premium="premium" @add-to-cart="updateCart" @remove-from-cart="removeItem"></product>
+    <product
+      :premium="premium"
+      @add-to-cart="updateCart"
+      @remove-from-cart="removeItem"
+    />
   </div>
 </template>
 
 <script>
 import Product from "@/components/Product.vue";
 export default {
-  name: "app",
+  name: "App",
   components: {
     Product
   },

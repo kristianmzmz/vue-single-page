@@ -1,40 +1,46 @@
 <template>
-    <div class="product">
-
-        <div class="product-image">
-          <img :src="image" />
-        </div>
-
-        <div class="product-info">
-            <h1>{{ product }}</h1>
-            <p v-if="inStock">In Stock</p>
-            <p v-else>Out of Stock</p>
-            <product-tabs :shipping="shipping" :details="details"></product-tabs>
-
-            <div
-                class="color-box"
-                v-for="(variant, index) in variants"
-                :key="variant.ID"
-                :style="{ backgroundColor: variant.color }"
-                @mouseover="updateProduct(index)">
-            </div>
-
-            <div class="buttons">
-                <button
-                    v-on:click="addToCart"
-                    :disabled="!inStock"
-                    :class="{ disabledButton: !inStock }">
-                    Add to cart
-                </button>
-                <button @click="removeFromCart">
-                    Remove from cart
-                </button>
-            </div>
-
-            <review-tabs :reviews="reviews"></review-tabs>
-        </div>
-
+  <div class="product">
+    <div class="product-image">
+      <img :src="image">
     </div>
+
+    <div class="product-info">
+      <h1>{{ product }}</h1>
+      <p v-if="inStock">
+        In Stock
+      </p>
+      <p v-else>
+        Out of Stock
+      </p>
+      <product-tabs
+        :shipping="shipping"
+        :details="details"
+      />
+
+      <div
+        v-for="(variant, index) in variants"
+        :key="variant.ID"
+        class="color-box"
+        :style="{ backgroundColor: variant.color }"
+        @mouseover="updateProduct(index)"
+      />
+
+      <div class="buttons">
+        <button
+          :disabled="!inStock"
+          :class="{ disabledButton: !inStock }"
+          @click="addToCart"
+        >
+          Add to cart
+        </button>
+        <button @click="removeFromCart">
+          Remove from cart
+        </button>
+      </div>
+
+      <review-tabs :reviews="reviews" />
+    </div>
+  </div>
 </template>
 
 <script>
@@ -43,7 +49,7 @@ import ProductTabs from './ProductTabs.vue'
 import ReviewTabs from './ReviewTabs.vue'
 
 export default {
-    name: 'product',
+    name: 'Product',
     components: {
         ProductTabs, 
         ReviewTabs
@@ -77,17 +83,6 @@ export default {
             reviews: []
         }
     },
-    methods: {
-        addToCart() {
-            this.$emit('add-to-cart', this.variants[this.selectedVariant].ID)
-        },
-        updateProduct(index) {
-            this.selectedVariant = index
-        },
-        removeFromCart() {
-            this.$emit('remove-from-cart', this.variants[this.selectedVariant].ID)
-        }
-    },
     computed: {
         title() {
             return this.brand + " " + this.product + this.onSale
@@ -109,6 +104,17 @@ export default {
         EventBus.$on('review-submitted', submittedProductReview => {
             this.reviews.push(submittedProductReview)
         }) 
+    },
+    methods: {
+        addToCart() {
+            this.$emit('add-to-cart', this.variants[this.selectedVariant].ID)
+        },
+        updateProduct(index) {
+            this.selectedVariant = index
+        },
+        removeFromCart() {
+            this.$emit('remove-from-cart', this.variants[this.selectedVariant].ID)
+        }
     }
 }
 </script>
