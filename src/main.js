@@ -1,30 +1,13 @@
 import Vue from 'vue'
-import Product from './Product.vue'
+import App from './App.vue'
+
+var eventBus = new Vue()
 
 new Vue({
     el: '#app',
-    render: h => h(Product),
-    data: {
-        premium: true,
-        cart: []
-    },
-    methods: {
-        updateCart(id) {
-            this.cart.push(id)
-        },
-        removeItem(id) {
-            for (var i = this.cart.length - 1; i >= 0; i--) {
-                if (this.cart[i] === id) {
-                    this.cart.splice(i, 1)
-                }
-            }
-        }
-    }
-    
+    render: h => h(App),
 })
 
-
-var eventBus = new Vue()
 
 /* Vue.component('product-review', {
     template: `

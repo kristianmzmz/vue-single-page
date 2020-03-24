@@ -98,9 +98,9 @@ export default {
         }
     },
     mounted() {
-        eventBus.$on('review-submitted', submittedProductReview => {
+        /* eventBus.$on('review-submitted', submittedProductReview => {
             this.reviews.push(submittedProductReview)
-        })
+        }) */
     }
 }
 </script>
