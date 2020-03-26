@@ -30,10 +30,10 @@
 </template>
 
 <script>
-import ProductReview from "./ProductReview.vue";
+import ProductReview from './ProductReview.vue';
 
 export default {
-  name: "ReviewTabs",
+  name: 'ReviewTabs',
   components: {
     ProductReview
   },
@@ -45,7 +45,7 @@ export default {
   },
   data() {
     return {
-      tabs: ["Reviews", "Make a review"],
+      tabs: ['Reviews', 'Make a review'],
       selectedTab: 0
     };
   }

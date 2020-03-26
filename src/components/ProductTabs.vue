@@ -27,7 +27,7 @@
 
 <script>
 export default {
-  name: "ProductTabs",
+  name: 'ProductTabs',
   props: {
     shipping: {
       type: String,
@@ -40,7 +40,7 @@ export default {
   },
   data() {
     return {
-      tabs: ["Shipping", "Details"],
+      tabs: ['Shipping', 'Details'],
       selectedTab: 0
     };
   }
