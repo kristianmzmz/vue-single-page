@@ -6,9 +6,7 @@
       class="tab"
       :class="{activeTab: selectedTab === index}"
       @click="selectedTab = index"
-    >
-      {{ tab }}
-    </span>
+    >{{ tab }}</span>
 
     <div v-show="selectedTab === 0">
       <p>Shipping: {{ shipping }}</p>
@@ -29,22 +27,22 @@
 
 <script>
 export default {
-    name: 'ProductTabs',
-    props: {
-        shipping: {
-            type: String,
-            required: true
-        },
-        details: {
-            type: Array,
-            required: true
-        },
+  name: 'ProductTabs',
+  props: {
+    shipping: {
+      type: String,
+      required: true
     },
-    data() {
-        return {
-            tabs: ['Shipping', 'Details'],
-            selectedTab: 0
-        };
+    details: {
+      type: Array,
+      required: true
     }
-}
+  },
+  data() {
+    return {
+      tabs: ['Shipping', 'Details'],
+      selectedTab: 0
+    };
+  }
+};
 </script>

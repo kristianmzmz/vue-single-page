@@ -1,14 +1,21 @@
 <template>
   <div class="product">
     <div class="product-image">
-      <img :src="image" />
+      <img :src="image">
     </div>
 
     <div class="product-info">
       <h1>{{ product }}</h1>
-      <p v-if="inStock">In Stock</p>
-      <p v-else>Out of Stock</p>
-      <product-tabs :shipping="shipping" :details="details" />
+      <p v-if="inStock">
+        In Stock
+      </p>
+      <p v-else>
+        Out of Stock
+      </p>
+      <product-tabs
+        :shipping="shipping"
+        :details="details"
+      />
 
       <div
         v-for="(variant, index) in variants"
@@ -23,8 +30,12 @@
           :disabled="!inStock"
           :class="{ disabledButton: !inStock }"
           @click="addToCart"
-        >Add to cart</button>
-        <button @click="removeFromCart">Remove from cart</button>
+        >
+          Add to cart
+        </button>
+        <button @click="removeFromCart">
+          Remove from cart
+        </button>
       </div>
 
       <review-tabs :reviews="reviews" />
@@ -33,12 +44,12 @@
 </template>
 
 <script>
-import { EventBus } from "../event-bus.js";
-import ProductTabs from "./ProductTabs.vue";
-import ReviewTabs from "./ReviewTabs.vue";
+import { EventBus } from '../event-bus.js';
+import ProductTabs from './ProductTabs.vue';
+import ReviewTabs from './ReviewTabs.vue';
 
 export default {
-  name: "Product",
+  name: 'Product',
   components: {
     ProductTabs,
     ReviewTabs
@@ -51,21 +62,21 @@ export default {
   },
   data() {
     return {
-      brand: "Codurance",
-      product: "Socks",
+      brand: 'Codurance',
+      product: 'Socks',
       selectedVariant: 0,
-      details: ["80% cotton", "20% polyester", "Gender-neutral"],
+      details: ['80% cotton', '20% polyester', 'Gender-neutral'],
       variants: [
         {
           ID: 2234,
-          color: "green",
-          image: "./assets/green-socks.jpg",
+          color: 'green',
+          image: './assets/green-socks.jpg',
           quantity: 10
         },
         {
           ID: 2235,
-          color: "blue",
-          image: "./assets/blue-socks.jpg",
+          color: 'blue',
+          image: './assets/blue-socks.jpg',
           quantity: 1
         }
       ],
@@ -74,7 +85,7 @@ export default {
   },
   computed: {
     title() {
-      return this.brand + " " + this.product + this.onSale;
+      return this.brand + ' ' + this.product + this.onSale;
     },
     image() {
       return this.variants[this.selectedVariant].image;
@@ -83,26 +94,26 @@ export default {
       return this.variants[this.selectedVariant].quantity > 0;
     },
     onSale() {
-      return this.variants[this.selectedVariant].onSale ? " on sale" : "";
+      return this.variants[this.selectedVariant].onSale ? ' on sale' : '';
     },
     shipping() {
-      return this.premium ? "free" : "$2.99";
+      return this.premium ? 'free' : '$2.99';
     }
   },
   mounted() {
-    EventBus.$on("review-submitted", submittedProductReview => {
+    EventBus.$on('review-submitted', submittedProductReview => {
       this.reviews.push(submittedProductReview);
     });
   },
   methods: {
     addToCart() {
-      this.$emit("add-to-cart", this.variants[this.selectedVariant].ID);
+      this.$emit('add-to-cart', this.variants[this.selectedVariant].ID);
     },
     updateProduct(index) {
       this.selectedVariant = index;
     },
     removeFromCart() {
-      this.$emit("remove-from-cart", this.variants[this.selectedVariant].ID);
+      this.$emit('remove-from-cart', this.variants[this.selectedVariant].ID);
     }
   }
 };
@@ -131,7 +142,7 @@ img {
 .color-box {
   width: 40px;
   height: 40px;
-  margin-top: 5px;  
+  margin-top: 5px;
   display: inline-block;
   margin-right: 5px;
 }
