@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="shop">
     <div class="cart">
       <p>Cart({{ cart.length }})</p>
     </div>
@@ -11,7 +11,7 @@
 <script>
 import Product from "@/components/Product.vue";
 export default {
-  name: "BuySocks",
+  name: "buy-socks",
   components: {
     Product
   },
