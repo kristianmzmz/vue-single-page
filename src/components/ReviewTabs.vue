@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import ProductReview from './ProductReview.vue';
+import ProductReview from '@/components/ProductReview.vue'
 
 export default {
   name: 'ReviewTabs',
@@ -47,7 +47,7 @@ export default {
     return {
       tabs: ['Reviews', 'Make a review'],
       selectedTab: 0
-    };
+    }
   }
-};
+}
 </script>

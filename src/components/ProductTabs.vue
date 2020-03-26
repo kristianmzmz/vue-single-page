@@ -42,7 +42,7 @@ export default {
     return {
       tabs: ['Shipping', 'Details'],
       selectedTab: 0
-    };
+    }
   }
-};
+}
 </script>

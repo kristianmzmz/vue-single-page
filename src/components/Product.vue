@@ -44,9 +44,9 @@
 </template>
 
 <script>
-import { EventBus } from '../event-bus.js';
-import ProductTabs from './ProductTabs.vue';
-import ReviewTabs from './ReviewTabs.vue';
+import { EventBus } from '@/event-bus.js'
+import ProductTabs from '@/components/ProductTabs.vue'
+import ReviewTabs from '@/components/ReviewTabs.vue'
 
 export default {
   name: 'Product',
@@ -81,42 +81,42 @@ export default {
         }
       ],
       reviews: []
-    };
+    }
   },
   computed: {
     title() {
-      return this.brand + ' ' + this.product + this.onSale;
+      return this.brand + ' ' + this.product + this.onSale
     },
     image() {
-      return this.variants[this.selectedVariant].image;
+      return this.variants[this.selectedVariant].image
     },
     inStock() {
-      return this.variants[this.selectedVariant].quantity > 0;
+      return this.variants[this.selectedVariant].quantity > 0
     },
     onSale() {
-      return this.variants[this.selectedVariant].onSale ? ' on sale' : '';
+      return this.variants[this.selectedVariant].onSale ? ' on sale' : ''
     },
     shipping() {
-      return this.premium ? 'free' : '$2.99';
+      return this.premium ? 'free' : '$2.99'
     }
   },
   mounted() {
     EventBus.$on('review-submitted', submittedProductReview => {
-      this.reviews.push(submittedProductReview);
-    });
+      this.reviews.push(submittedProductReview)
+    })
   },
   methods: {
     addToCart() {
-      this.$emit('add-to-cart', this.variants[this.selectedVariant].ID);
+      this.$emit('add-to-cart', this.variants[this.selectedVariant].ID)
     },
     updateProduct(index) {
-      this.selectedVariant = index;
+      this.selectedVariant = index
     },
     removeFromCart() {
-      this.$emit('remove-from-cart', this.variants[this.selectedVariant].ID);
+      this.$emit('remove-from-cart', this.variants[this.selectedVariant].ID)
     }
   }
-};
+}
 </script>
 
 <style>

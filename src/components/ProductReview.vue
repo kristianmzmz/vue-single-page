@@ -68,7 +68,7 @@
 </template>
     
 <script>
-import { EventBus } from '../event-bus.js';
+import { EventBus } from '@/event-bus.js'
 
 export default {
   name: 'ProductReview',
@@ -79,32 +79,32 @@ export default {
       rating: null,
       recommend: null,
       errors: []
-    };
+    }
   },
   methods: {
     onSubmit() {
-      this.errors = [];
+      this.errors = []
       if (this.name && this.rating && this.review && this.recommend) {
         let productReview = {
           name: this.name,
           review: this.review,
           rating: this.rating,
           recommend: this.recommend
-        };
-        EventBus.$emit('review-submitted', productReview);
-        this.name = null;
-        this.review = null;
-        this.rating = null;
-        this.recommend = null;
+        }
+        EventBus.$emit('review-submitted', productReview)
+        this.name = null
+        this.review = null
+        this.rating = null
+        this.recommend = null
       } else {
-        if (!this.name) this.errors.push('Name is required');
-        if (!this.rating) this.errors.push('Rating is required');
-        if (!this.review) this.errors.push('Review is required');
-        if (!this.recommend) this.errors.push('Recommend is required');
+        if (!this.name) this.errors.push('Name is required')
+        if (!this.rating) this.errors.push('Rating is required')
+        if (!this.review) this.errors.push('Review is required')
+        if (!this.recommend) this.errors.push('Recommend is required')
       }
     }
   }
-};
+}
 </script>
 
 <style>

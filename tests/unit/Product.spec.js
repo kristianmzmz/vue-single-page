@@ -7,7 +7,7 @@ describe('Product.vue', () => {
     const wrapper = shallowMount(Product, {
       propsData: { premium }
     })
-    wrapper.vm.updateProduct(0);
+    wrapper.vm.updateProduct(0)
     expect(wrapper.vm.selectedVariant).toBe(0)
   })
 })

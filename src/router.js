@@ -1,9 +1,9 @@
-import Vue from "vue"
-import VueRouter from "vue-router"
+import Vue from 'vue'
+import VueRouter from 'vue-router'
 import BuySocks from '@/views/BuySocks.vue'
 import HelloWorld from '@/views/HelloWorld.vue'
 
-Vue.use(VueRouter);
+Vue.use(VueRouter)
 
 const routes = [
   { path: '/', component: HelloWorld },
@@ -14,4 +14,4 @@ const router = new VueRouter({
   routes
 })
 
-export default router;
+export default router
