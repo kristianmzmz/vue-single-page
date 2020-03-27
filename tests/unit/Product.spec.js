@@ -1,13 +1,42 @@
 import { shallowMount } from '@vue/test-utils'
 import Product from '@/components/Product.vue'
 
-describe('Product.vue', () => {
+const factory = (values = {}) => {
+  return shallowMount(Product, {
+    data() {
+      return {
+        ...values
+      }
+    }
+  })
+}
+
+describe('Product', () => {
+  const premium = true
+  const wrapper = factory({ premium })
+
+  function expectContent(selector, value) {
+    expect(wrapper.find(selector).text()).toEqual(value)
+  }
+
   it('updates the selected product', () => {
-    const premium = true
-    const wrapper = shallowMount(Product, {
-      propsData: { premium }
-    })
     wrapper.vm.updateProduct(0)
     expect(wrapper.vm.selectedVariant).toBe(0)
+  })
+
+  it('renders out of stock message if there are no products', (done) => {
+    wrapper.findAll('.color-box').at(1).trigger('mouseover')
+    wrapper.vm.$nextTick(() => {
+      expectContent('.stock', 'Out of Stock')
+      done();
+    })
+  })
+
+  it('renders in stock message if there are products', (done) => {
+    wrapper.findAll('.color-box').at(0).trigger('mouseover')
+    wrapper.vm.$nextTick(() => {
+      expectContent('.stock', 'In Stock')
+      done();
+    })
   })
 })

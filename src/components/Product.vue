@@ -6,10 +6,16 @@
 
     <div class="product-info">
       <h1>{{ product }}</h1>
-      <p v-if="inStock">
+      <p
+        v-if="inStock"
+        class="stock"
+      >
         In Stock
       </p>
-      <p v-else>
+      <p
+        v-else
+        class="stock"
+      >
         Out of Stock
       </p>
       <product-tabs
@@ -74,7 +80,7 @@ export default {
           ID: 2235,
           color: 'blue',
           image: './assets/blue-socks.jpg',
-          quantity: 1
+          quantity: 0
         }
       ]
     }
