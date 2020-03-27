@@ -1,26 +1,23 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import ProductDetails from '@/views/ProductDetails.vue'
-import ProductReview from '@/views/ProductReview.vue'
-import HelloWorld from '@/views/HelloWorld.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     name: 'home',
-    path: '/', 
-    component: HelloWorld
+    path: '/',
+    component: () => import(/* webpackChunkName: "HelloWorld" */ '@/views/HelloWorld.vue')
   },
   {
     name: 'product-details',
     path: '/product-details',
-    component: ProductDetails
+    component: () => import(/* webpackChunkName: "ProductDetails" */ '@/views/ProductDetails.vue')
   },
   {
     name: 'product-review',
     path: '/product-review',
-    component: ProductReview
+    component: () => import(/* webpackChunkName: "ProductReview" */ '@/views/ProductReview.vue')
   },
 ]
 
