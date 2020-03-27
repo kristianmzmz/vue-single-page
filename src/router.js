@@ -1,13 +1,21 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import BuySocks from '@/views/BuySocks.vue'
+import ProductDetails from '@/views/ProductDetails.vue'
 import HelloWorld from '@/views/HelloWorld.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
-  { path: '/', component: HelloWorld },
-  { path: '/buy-socks', component: BuySocks },
+  {
+    name: 'home',
+    path: '/', 
+    component: HelloWorld
+  },
+  {
+    name: 'product-details',
+    path: '/product-details',
+    component: ProductDetails
+  },
 ]
 
 const router = new VueRouter({

@@ -2,13 +2,13 @@
   <div id="app">
     <ul class="nav-bar">
       <li>
-        <router-link to="/">
+        <router-link :to="{ name: 'home' }">
           Hello World
         </router-link>
       </li>
       <li>
-        <router-link to="/buy-socks">
-          Buy socks
+        <router-link :to="{ name: 'product-details' }">
+          Check our socks
         </router-link>
       </li>
     </ul>

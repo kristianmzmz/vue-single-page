@@ -16,7 +16,7 @@
 import Product from '@/components/Product.vue'
 
 export default {
-  name: 'BuySocks',
+  name: 'ProductDetails',
   components: {
     Product
   },
