@@ -11,6 +11,11 @@
           Check our socks
         </router-link>
       </li>
+      <li>
+        <router-link :to="{ name: 'product-review' }">
+          Review our socks
+        </router-link>
+      </li>
     </ul>
     <router-view />
   </div>

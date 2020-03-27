@@ -46,13 +46,11 @@
 <script>
 import { EventBus } from '@/event-bus.js'
 import ProductTabs from '@/components/ProductTabs.vue'
-import ReviewTabs from '@/components/ReviewTabs.vue'
 
 export default {
   name: 'Product',
   components: {
-    ProductTabs,
-    ReviewTabs
+    ProductTabs
   },
   props: {
     premium: {
@@ -79,8 +77,7 @@ export default {
           image: './assets/blue-socks.jpg',
           quantity: 1
         }
-      ],
-      reviews: []
+      ]
     }
   },
   computed: {
@@ -99,11 +96,6 @@ export default {
     shipping() {
       return this.premium ? 'free' : '$2.99'
     }
-  },
-  mounted() {
-    EventBus.$on('review-submitted', submittedProductReview => {
-      this.reviews.push(submittedProductReview)
-    })
   },
   methods: {
     addToCart() {
