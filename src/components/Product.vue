@@ -44,7 +44,6 @@
 </template>
 
 <script>
-import { EventBus } from '@/event-bus.js'
 import ProductTabs from '@/components/ProductTabs.vue'
 
 export default {
