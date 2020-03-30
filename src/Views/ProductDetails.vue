@@ -6,8 +6,8 @@
 
     <product
       :premium="premium"
-      @add-to-cart="updateCart"
-      @remove-from-cart="removeItem"
+      @addToCart="updateCart"
+      @removeFromCart="removeItem"
     />
   </div>
 </template>
