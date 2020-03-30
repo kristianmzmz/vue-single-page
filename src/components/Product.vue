@@ -43,8 +43,6 @@
           Remove from cart
         </button>
       </div>
-
-      <review-tabs :reviews="reviews" />
     </div>
   </div>
 </template>
@@ -68,6 +66,7 @@ export default {
       brand: 'Codurance',
       product: 'Socks',
       selectedVariant: 0,
+      reviews: [],
       details: ['80% cotton', '20% polyester', 'Gender-neutral'],
       variants: [
         {

@@ -1,19 +1,15 @@
 import { shallowMount } from '@vue/test-utils'
 import Product from '@/components/Product.vue'
 
-const factory = (values = {}) => {
-  return shallowMount(Product, {
-    data() {
-      return {
-        ...values
-      }
-    }
+function getMountedComponent(Component, propsData) {
+  return shallowMount(Component, {
+    propsData
   })
 }
 
 describe('Product', () => {
   const premium = true
-  const wrapper = factory({ premium })
+  const wrapper = getMountedComponent(Product, { premium })
 
   function expectContent(selector, value) {
     expect(wrapper.find(selector).text()).toEqual(value)
@@ -28,7 +24,7 @@ describe('Product', () => {
     wrapper.findAll('.color-box').at(1).trigger('mouseover')
     wrapper.vm.$nextTick(() => {
       expectContent('.stock', 'Out of Stock')
-      done();
+      done()
     })
   })
 
@@ -36,7 +32,7 @@ describe('Product', () => {
     wrapper.findAll('.color-box').at(0).trigger('mouseover')
     wrapper.vm.$nextTick(() => {
       expectContent('.stock', 'In Stock')
-      done();
+      done()
     })
   })
 })
