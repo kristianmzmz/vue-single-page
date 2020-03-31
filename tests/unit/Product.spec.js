@@ -37,8 +37,6 @@ describe('Product selection', () => {
 })
 
 describe('Product cart', () => {
-  //const premium = true
-  //const wrapper = getMountedComponent(Product, { premium })
 
   it('Adds product to cart', async () => {
     wrapper.findAll('.color-box').at(0).trigger('mouseover')
@@ -67,7 +65,7 @@ describe('Product shipping', () => {
     expect(wrapper.vm.shipping).toBe('free')
   })
 
-  it('Not premium users get shippinmg costs', () => {
+  it('Not premium users get shipping costs', () => {
     const premium = false
     const wrapper = getMountedComponent(Product, { premium })
     expect(wrapper.vm.shipping).toBe('$2.99')
