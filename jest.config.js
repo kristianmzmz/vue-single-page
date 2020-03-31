@@ -1,6 +1,6 @@
 module.exports = {
   preset: '@vue/cli-plugin-unit-jest/presets/no-babel',
-  "collectCoverage": true,
+  //collectCoverage": true,
   "collectCoverageFrom": ["**/*.{js,vue}", "!**/node_modules/**"],
   "coverageReporters": ["html", "text-summary"]
 }
