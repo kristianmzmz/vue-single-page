@@ -10,12 +10,12 @@ const store = new Vuex.Store({
         cart: []
     },
     mutations: {
-        updateCart(state) {
-            state.cart.push(state.id)
+        updateCart(state, parameters) {
+            state.cart.push(parameters.selectedProductID)
         },
-        removeItem(state) {
+        removeItem(state, parameters) {
             for (var i = state.cart.length - 1; i >= 0; i--) {
-                if (state.cart[i] === state.id) {
+                if (state.cart[i] === parameters.selectedProductID) {
                     state.cart.splice(i, 1)
                 }
             }

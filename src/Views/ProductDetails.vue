@@ -26,11 +26,15 @@ export default {
     }
   },
   methods:{
-    addToCart(id) {
-      return this.$store.commit('updateCart', id)
+    addToCart(selectedProductID) {
+      return this.$store.commit('updateCart', {
+        selectedProductID: selectedProductID
+      })
     },
-    removeFromCart(id) {
-      return this.$store.commit('removeItem', id)
+    removeFromCart(selectedProductID) {
+      return this.$store.commit('removeItem', {
+        selectedProductID: selectedProductID
+      })
     }
   }, 
   data() {
