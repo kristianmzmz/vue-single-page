@@ -1,12 +1,12 @@
 <template>
   <div id="shop">
     <div class="cart">
-      <p>Cart({{ cart.length }})</p>
+      <p>Cart({{ count }})</p>
     </div>
 
     <product
       :premium="premium"
-      @add-to-cart="updateCart"
+      @add-to-cart="addToCart"
       @remove-from-cart="removeItem"
     />
   </div>
@@ -20,20 +20,21 @@ export default {
   components: {
     Product
   },
-  data() {
-    return { premium: true, cart: [] }
+  computed: {
+    count () {
+      return this.$store.state.cart.length
+    }
   },
-  methods: {
-    updateCart(id) {
-      this.cart.push(id)
+  methods:{
+    addToCart(id) {
+      return this.$store.commit('updateCart', id)
     },
     removeItem(id) {
-      for (var i = this.cart.length - 1; i >= 0; i--) {
-        if (this.cart[i] === id) {
-          this.cart.splice(i, 1)
-        }
-      }
+      return this.$store.commit('removeItem', id)
     }
+  }, 
+  data() {
+    return { premium: true }
   }
 }
 </script>

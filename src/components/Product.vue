@@ -43,8 +43,6 @@
           Remove from cart
         </button>
       </div>
-
-      <review-tabs :reviews="reviews" />
     </div>
   </div>
 </template>
