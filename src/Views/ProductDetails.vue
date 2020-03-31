@@ -6,8 +6,8 @@
 
     <product
       :premium="premium"
-      @addToCart="updateCart"
-      @removeFromCart="removeItem"
+      @addToCart="addToCart"
+      @removeFromCart="removeFromCart"
     />
   </div>
 </template>
@@ -29,7 +29,7 @@ export default {
     addToCart(id) {
       return this.$store.commit('updateCart', id)
     },
-    removeItem(id) {
+    removeFromCart(id) {
       return this.$store.commit('removeItem', id)
     }
   }, 

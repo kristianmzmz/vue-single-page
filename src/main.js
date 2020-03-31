@@ -11,12 +11,12 @@ const store = new Vuex.Store({
     },
     mutations: {
         updateCart(state) {
-            cart.push(state.id)
+            state.cart.push(state.id)
         },
         removeItem(state) {
-            for (var i = cart.length - 1; i >= 0; i--) {
-                if (cart[i] === state.id) {
-                    cart.splice(i, 1)
+            for (var i = state.cart.length - 1; i >= 0; i--) {
+                if (state.cart[i] === state.id) {
+                    state.cart.splice(i, 1)
                 }
             }
         }
