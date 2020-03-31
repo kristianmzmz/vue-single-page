@@ -36,10 +36,14 @@
           :disabled="!inStock"
           :class="{ disabledButton: !inStock }"
           @click="addToCart"
+          class="add-to-cart"
         >
           Add to cart
         </button>
-        <button @click="removeFromCart">
+        <button
+          @click="removeFromCart"
+          class="remove-from-cart"
+        >
           Remove from cart
         </button>
       </div>
@@ -66,6 +70,7 @@ export default {
       brand: 'Codurance',
       product: 'Socks',
       selectedVariant: 0,
+      reviews: [],
       details: ['80% cotton', '20% polyester', 'Gender-neutral'],
       variants: [
         {
@@ -84,17 +89,11 @@ export default {
     }
   },
   computed: {
-    title() {
-      return this.brand + ' ' + this.product + this.onSale
-    },
     image() {
       return this.variants[this.selectedVariant].image
     },
     inStock() {
       return this.variants[this.selectedVariant].quantity > 0
-    },
-    onSale() {
-      return this.variants[this.selectedVariant].onSale ? ' on sale' : ''
     },
     shipping() {
       return this.premium ? 'free' : '$2.99'
@@ -102,13 +101,13 @@ export default {
   },
   methods: {
     addToCart() {
-      this.$emit('add-to-cart', this.variants[this.selectedVariant].ID)
+      this.$emit('addToCart', this.variants[this.selectedVariant].ID)
     },
     updateProduct(index) {
       this.selectedVariant = index
     },
     removeFromCart() {
-      this.$emit('remove-from-cart', this.variants[this.selectedVariant].ID)
+      this.$emit('removeFromCart', this.variants[this.selectedVariant].ID)
     }
   }
 }

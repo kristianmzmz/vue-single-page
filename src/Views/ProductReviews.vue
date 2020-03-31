@@ -11,7 +11,7 @@ import { EventBus } from '@/event-bus.js'
 import ReviewTabs from '@/components/ReviewTabs.vue'
 
 export default {
-  name: 'ProductReview',
+  name: 'ProductReviews',
   components: {
     ReviewTabs
   },
