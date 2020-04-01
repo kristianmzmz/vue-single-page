@@ -7,11 +7,11 @@ exports[`renders correctly 1`] = `
   <p><label for="name">Name:</label> <input id="name"></p>
   <p><label for="review">Review:</label> <textarea id="review"></textarea></p>
   <p><label for="rating">Rating:</label> <select id="rating">
-      <option>5</option>
-      <option>4</option>
-      <option>3</option>
-      <option>2</option>
-      <option>1</option>
+      <option value="5">5</option>
+      <option value="4">4</option>
+      <option value="3">3</option>
+      <option value="2">2</option>
+      <option value="1">1</option>
     </select></p>
   <p>
     Would you recommend this product?
